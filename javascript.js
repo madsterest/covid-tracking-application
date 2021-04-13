@@ -9,7 +9,6 @@ button.addEventListener("click", function () {
   console.log("hey there");
   var countryName = formInput.value.trim();
   console.log(countryName);
-  locationDisplay.innerHTML = "Location: " + countryName;
 });
 
 form.addEventListener("submit", function (event) {
@@ -17,7 +16,6 @@ form.addEventListener("submit", function (event) {
   console.log("submitted");
   var countryName = formInput.value.trim();
   console.log(countryName);
-  locationDisplay.innerHTML = "Location: " + countryName;
 });
 
 // function vaccineAPI(locationName) {
@@ -41,6 +39,10 @@ function covidStats(locationName) {
     })
     .then(function (data) {
       console.log(data);
+      var currentCases =
+        data.All.confirmed - data.All.deaths - data.All.recovered;
+      var percentage = (currentCases / data.All.population) * 100;
+      console.log(percentage);
     });
 
   var requestVaccineUrl =
@@ -51,6 +53,7 @@ function covidStats(locationName) {
     })
     .then(function (data) {
       console.log(data);
+      var vaccinated = data.All.people_partially_vaccinated;
     });
 }
 
