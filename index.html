@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
   <head>
     <meta charset="UTF-8" />
@@ -30,13 +31,13 @@
       <div class="row">
         <div class="col-1 bg-dark"></div>
         <div class="col-10 bg-dark text-light">
-          <form>
+          <form onsubmit="onLocationSubmit(event)">
             <section>
               <div class="input-group justify-content-center p-3">
                 <div class="form-outline">
                   <input id="search-focus" type="search" class="form-control " placeholder="Enter a country"/>
                 </div>
-                <button type="button" class="btn btn-primary">
+                <button type="button submit" class="btn btn-primary">
                   <i class="" data-fa-i2svg=""
                     ><svg
                       class="svg-inline--fa fa-search fa-w-16"
@@ -59,16 +60,6 @@
               </div>
             </section>
           </form>
-
-          <div class="row">
-            <div class="col-12">
-              <div class="card"></div>
-              <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"></p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -85,11 +76,16 @@
         </div>
         <div class="card col-8 p-3 m-3 bg-warning" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <h5 class="card-title"></h5>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+            <p class="card-text" id="vaccinatedStats"></p>
+            <p class="card-text" id="deathStats"></p>
+            <p class="card-text" id="percentageStats"></p>
+            <p class="card-text" id="safeRank"></p>
+            <p class="card-text font-weight-bold">Useful resources:<br>
+              <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports" class="card-link">WHO</a>
+              <a href="https://www.australia.gov.au/" class="card-link">Australian Government</a>
+            </p>
           </div>
         </div>
       </div>
