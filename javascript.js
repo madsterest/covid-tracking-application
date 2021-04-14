@@ -40,6 +40,33 @@ function formatLocationName(locationName) {
   return encodeURI(titleCasedLocation);
 }
 
+var statsDisplay = document.querySelector(".card-text");
+
+button.addEventListener("click", function () {
+  console.log("hey there");
+  var countryName = formInput.value.trim();
+  console.log(countryName);
+});
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  console.log("submitted");
+  var countryName = formInput.value.trim();
+  console.log(countryName);
+});
+
+// function vaccineAPI(locationName) {
+//   var requestUrl =
+//     "https://covid-api.mmediagroup.fr/v1/vaccines?country=" + locationName;
+//   fetch(requestUrl)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//     });
+// }
+
 function covidStats(locationName) {
   locationDisplay.innerHTML = locationName;
 
@@ -79,6 +106,8 @@ function covidStats(locationName) {
       console.log(currentDeaths)
       deathStats.innerHTML = "Deaths: " + currentDeaths;
 
+      var percentage = (currentCases / data.All.population) * 100;
+      console.log(percentage);
     });
 
   var requestVaccineUrl =
