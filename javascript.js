@@ -4,12 +4,48 @@ var formInput = document.getElementById("search-focus");
 var form = document.querySelector("form");
 var locationDisplay = document.querySelector(".card-title");
 var statsDisplay = document.querySelector(".card-text");
+var recentSearchList = document.getElementById("searches");
+var countryNameArray = [];
+countryNameArray = localStorage.getItem('country');
+countryNameArray = JSON.parse(countryNameArray);
 
 button.addEventListener("click", function () {
-  console.log("hey there");
   var countryName = formInput.value.trim();
-  console.log(countryName);
+  if(countryNameArray.includes(countryName)) {
+     
+  } else { 
+   countryNameArray.push(countryName);
+   console.log('Array ' + countryNameArray)
+   localStorage.setItem('country',JSON.stringify(countryNameArray));
+   arrToUl();
+ }
+
+ covidStats(countryName);
 });
+
+
+
+function arrToUl() {
+  recentSearchList.innerHTML = "";
+  var recentSearches = localStorage.getItem('country');
+  recentSearches = JSON.parse(recentSearches);
+  console.log('Searches:' + recentSearches);
+  for(i=0;i < recentSearches.length;i++) {
+    var li = document.createElement('li');
+    recentSearchList.appendChild(li);
+    li.innerHTML=li.innerHTML + recentSearches[i];
+    li.setAttribute("data-search", recentSearches[i]);
+    li.setAttribute("class", 'recentSearch');
+    li.setAttribute("onClick", 'resubmitSearch(this)');
+  } 
+}
+arrToUl();
+
+function resubmitSearch(e) {
+  var search = e.getAttribute("data-search");
+  console.log(search);
+  covidStats(search);
+}
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -17,6 +53,8 @@ form.addEventListener("submit", function (event) {
   var countryName = formInput.value.trim();
   console.log(countryName);
 });
+
+
 
 // function vaccineAPI(locationName) {
 //   var requestUrl =
@@ -77,3 +115,5 @@ function init() {
 }
 
 init();
+
+
