@@ -87,7 +87,12 @@ function covidStats(locationName) {
       var currentCases =
         data.All.confirmed - data.All.deaths - data.All.recovered;
       console.log(currentCases);
-      casesDisplay.innerHTML = "Active cases: " + currentCases;
+      if (currentCases > 999) {
+        var formattedCases = numberWithCommas(currentCases);
+        casesDisplay.innerHTML = "Active cases: " + formattedCases;
+      } else {
+        casesDisplay.innerHTML = "Active cases: " + currentCases;
+      }
 
       var percentage = ((currentCases / data.All.population) * 100).toFixed(2);
       console.log(percentage);
@@ -107,7 +112,12 @@ function covidStats(locationName) {
 
       var currentDeaths = data.All.deaths;
       console.log(currentDeaths);
-      deathStats.innerHTML = "Deaths: " + currentDeaths;
+      if (currentDeaths > 999) {
+        var formattedDeaths = numberWithCommas(currentDeaths);
+        deathStats.innerHTML = "Deaths: " + formattedDeaths;
+      } else {
+        deathStats.innerHTML = "Deaths: " + currentDeaths;
+      }
 
       var percentage = (currentCases / data.All.population) * 100;
       console.log(percentage);
@@ -126,8 +136,19 @@ function covidStats(locationName) {
       console.log(data);
       var vaccinated = data.All.people_partially_vaccinated;
       console.log(vaccinated);
-      vaccineStats.innerHTML = "Vaccinated: " + vaccinated;
+      if (vaccinated > 999) {
+        var formattedVaccinated = numberWithCommas(vaccinated);
+        vaccineStats.innerHTML = "Vaccinated: " + formattedVaccinated;
+      } else {
+        vaccineStats.innerHTML = "Vaccinated: " + vaccinated;
+      }
     });
+}
+function numberWithCommas(x) {
+  x = x.toString();
+  var pattern = /(-?\d+)(\d{3})/;
+  while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
+  return x;
 }
 
 // Initial page. Current location and stats displayed
