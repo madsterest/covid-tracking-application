@@ -3,6 +3,53 @@ var button = document.querySelector("button");
 var formInput = document.getElementById("search-focus");
 var form = document.querySelector("form");
 var locationDisplay = document.querySelector(".card-title");
+
+var statsDisplay = document.querySelector(".card-text");
+var recentSearchList = document.getElementById("searches");
+var countryNameArray = [];
+countryNameArray = localStorage.getItem('country');
+countryNameArray = JSON.parse(countryNameArray);
+
+button.addEventListener("click", function () {
+  var countryName = formInput.value.trim();
+  if(countryNameArray.includes(countryName)) {
+     
+  } else { 
+   countryNameArray.push(countryName);
+   console.log('Array ' + countryNameArray)
+   localStorage.setItem('country',JSON.stringify(countryNameArray));
+   arrToUl();
+ }
+
+ covidStats(countryName);
+});
+
+
+
+function arrToUl() {
+  recentSearchList.innerHTML = "";
+  var recentSearches = localStorage.getItem('country');
+  recentSearches = JSON.parse(recentSearches);
+  console.log('Searches:' + recentSearches);
+  for(i=0;i < recentSearches.length;i++) {
+    var li = document.createElement('li');
+    recentSearchList.appendChild(li);
+    li.innerHTML=li.innerHTML + recentSearches[i];
+    li.setAttribute("data-search", recentSearches[i]);
+    li.setAttribute("class", 'recentSearch');
+    li.setAttribute("onClick", 'resubmitSearch(this)');
+  } 
+}
+arrToUl();
+
+function resubmitSearch(e) {
+  var search = e.getAttribute("data-search");
+  console.log(search);
+  covidStats(search);
+}
+
+form.addEventListener("submit", function (event) {
+
 var casesDisplay = document.querySelector(".card-subtitle");
 var vaccineStats = document.querySelector("#vaccinatedStats");
 var deathStats = document.querySelector("#deathStats");
@@ -11,6 +58,7 @@ var safeRanking = document.querySelector("#safeRank");
 
 //used below as results only showed when the button was manually clicked and not when pressing enter on the keyboard.
 function onLocationSubmit(event) {
+
   event.preventDefault();
   var countryName = formInput.value.trim();
   console.log(countryName);
@@ -28,6 +76,7 @@ function formatLocationName(locationName) {
 }
 
 var statsDisplay = document.querySelector(".card-text");
+
 
 function covidStats(locationName) {
   locationDisplay.innerHTML = locationName;
@@ -107,3 +156,5 @@ function init() {
 }
 
 init();
+
+

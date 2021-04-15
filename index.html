@@ -35,7 +35,12 @@
             <section>
               <div class="input-group justify-content-center p-3">
                 <div class="form-outline">
-                  <input id="search-focus" type="search" class="form-control " placeholder="Enter a country"/>
+                  <input
+                    id="search-focus"
+                    type="search"
+                    class="form-control"
+                    placeholder="Enter a country"
+                  />
                 </div>
                 <button type="button submit" class="btn btn-primary">
                   <i class="" data-fa-i2svg=""
@@ -64,15 +69,26 @@
       </div>
     </div>
     <div class="row">
-      <div class="card col-3 bg-warning m-3 p-3" style="width: 18rem;">
-        <div class="card-header">
-          Previous Searches
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
+      <div class="card col-3 bg-warning m-3 p-3" style="width: 18rem">
+        <div class="card-header">Previous Searches</div>
+        <ul class="list-group list-group-flush" id="searches">
+          <!-- <li class="list-group-item">An item</li>
           <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A third item</li> -->
         </ul>
+
+      </div>
+      <div class="card col-8 p-3 m-3 bg-warning" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+          
         </div>
         <div class="card col-8 p-3 m-3 bg-warning" style="width: 18rem;">
           <div class="card-body">
@@ -87,8 +103,10 @@
               <a href="https://www.australia.gov.au/" class="card-link">Australian Government</a>
             </p>
           </div>
+
         </div>
       </div>
+    </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
