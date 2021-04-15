@@ -5,7 +5,7 @@ var form = document.querySelector("form");
 var locationDisplay = document.querySelector(".card-title");
 var statsDisplay = document.querySelector(".card-text");
 var recentSearchList = document.getElementById("searches");
-var countryNameArray = [];
+var countryNameArray = JSON.parse(localStorage.getItem("country")) || [];
 var casesDisplay = document.querySelector(".card-subtitle");
 var vaccineStats = document.querySelector("#vaccinatedStats");
 var deathStats = document.querySelector("#deathStats");
@@ -14,8 +14,7 @@ var safeRanking = document.querySelector("#safeRank");
 
 function arrToUl() {
   recentSearchList.innerHTML = "";
-  var recentSearches = localStorage.getItem("country");
-  recentSearches = JSON.parse(recentSearches);
+  var recentSearches = JSON.parse(localStorage.getItem("country"));
   console.log("Searches:" + recentSearches);
   if (recentSearches !== null) {
     for (i = 0; i < recentSearches.length; i++) {
@@ -45,7 +44,9 @@ function onLocationSubmit(event) {
   var countryName = formInput.value.trim();
   console.log(countryName);
   covidStats(countryName);
-  if (countryNameArray.includes(countryName)) {
+  var countrySavedArray = localStorage.getItem("country");
+  if (countrySavedArray.includes(countryName)) {
+    return;
   } else {
     countryNameArray.push(countryName);
     console.log("Array " + countryNameArray);
@@ -99,10 +100,10 @@ function covidStats(locationName) {
       percentageStats.innerHTML =
         "Percentage of active cases in total population: " + percentage + "%";
 
-      if (percentage <= 10) {
+      if (percentage <= 2) {
         safeRanking.innerHTML = "Safe to travel";
         safeRanking.style.color = "green";
-      } else if (percentage > 10 && percentage <= 30) {
+      } else if (percentage > 2 && percentage <= 5) {
         safeRanking.innerHTML = "Take care";
         safeRanking.style.color = "yellow";
       } else {
