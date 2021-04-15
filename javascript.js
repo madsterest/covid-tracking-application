@@ -23,7 +23,10 @@ function arrToUl() {
       recentSearchList.appendChild(li);
       li.innerHTML = li.innerHTML + recentSearches[i];
       li.setAttribute("data-search", recentSearches[i]);
-      li.setAttribute("class", "recentSearch");
+      li.setAttribute(
+        "class",
+        "recentSearch list-group-item bg-dark text-white"
+      );
       li.setAttribute("onClick", "resubmitSearch(this)");
     }
   }
@@ -86,7 +89,7 @@ function covidStats(locationName) {
       console.log(currentCases);
       casesDisplay.innerHTML = "Active cases: " + currentCases;
 
-      var percentage = ((currentCases / data.All.population) * 100).toFixed(4);
+      var percentage = ((currentCases / data.All.population) * 100).toFixed(2);
       console.log(percentage);
       percentageStats.innerHTML =
         "Percentage of active cases in total population: " + percentage + "%";
