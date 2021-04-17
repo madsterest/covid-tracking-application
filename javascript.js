@@ -45,11 +45,14 @@ function onLocationSubmit(event) {
   console.log(countryName);
   covidStats(countryName);
   var countrySavedArray = JSON.parse(localStorage.getItem("country"));
+  console.log(typeof countrySavedArray + "SAVED COUNTRIES");
   if (countrySavedArray !== null) {
-    var nameIncluded = countryNameArray.includes(countryName);
+    countryNameArray = countrySavedArray;
+    var nameIncluded = countrySavedArray.includes(countryName);
     if (nameIncluded) {
       return;
     } else {
+      console.log(typeof countrySavedArray + "TYPEOF NAMEARRAY");
       countrySavedArray.push(countryName);
       console.log("Array " + countrySavedArray);
       localStorage.setItem("country", JSON.stringify(countrySavedArray));
