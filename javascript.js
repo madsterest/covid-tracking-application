@@ -20,7 +20,7 @@ function arrToUl() {
     for (i = 0; i < recentSearches.length; i++) {
       var li = document.createElement("li");
       recentSearchList.appendChild(li);
-      li.innerHTML = li.innerHTML + recentSearches[i];
+      li.innerHTML = recentSearches[i];
       li.setAttribute("data-search", recentSearches[i]);
       li.setAttribute(
         "class",
@@ -44,15 +44,15 @@ function onLocationSubmit(event) {
   var countryName = formInput.value.trim();
   console.log(countryName);
   covidStats(countryName);
-  var countrySavedArray = localStorage.getItem("country");
+  var countrySavedArray = JSON.parse(localStorage.getItem("country"));
   if (countrySavedArray !== null) {
     var nameIncluded = countryNameArray.includes(countryName);
     if (nameIncluded) {
       return;
     } else {
-      countryNameArray.push(countryName);
-      console.log("Array " + countryNameArray);
-      localStorage.setItem("country", JSON.stringify(countryNameArray));
+      countrySavedArray.push(countryName);
+      console.log("Array " + countrySavedArray);
+      localStorage.setItem("country", JSON.stringify(countrySavedArray));
       arrToUl();
     }
   } else {
