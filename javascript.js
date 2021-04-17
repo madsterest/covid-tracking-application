@@ -5,7 +5,7 @@ var form = document.querySelector("form");
 var locationDisplay = document.querySelector(".card-title");
 var statsDisplay = document.querySelector(".card-text");
 var recentSearchList = document.getElementById("searches");
-var countryNameArray = JSON.parse(localStorage.getItem("country")) || [];
+var countryNameArray = [];
 var casesDisplay = document.querySelector(".card-subtitle");
 var vaccineStats = document.querySelector("#vaccinatedStats");
 var deathStats = document.querySelector("#deathStats");
@@ -45,15 +45,22 @@ function onLocationSubmit(event) {
   console.log(countryName);
   covidStats(countryName);
   var countrySavedArray = localStorage.getItem("country");
-  if (countrySavedArray.includes(countryName)) {
-    return;
+  if (countrySavedArray !== null) {
+    var nameIncluded = countryNameArray.includes(countryName);
+    if (nameIncluded) {
+      return;
+    } else {
+      countryNameArray.push(countryName);
+      console.log("Array " + countryNameArray);
+      localStorage.setItem("country", JSON.stringify(countryNameArray));
+      arrToUl();
+    }
   } else {
-    countryNameArray.push(countryName);
+    countryNameArray = countryName;
     console.log("Array " + countryNameArray);
     localStorage.setItem("country", JSON.stringify(countryNameArray));
     arrToUl();
   }
-
   covidStats(countryName);
 }
 
