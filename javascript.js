@@ -6,6 +6,7 @@ var locationDisplay = document.querySelector(".card-title");
 var statsDisplay = document.querySelector(".card-text");
 var recentSearchList = document.getElementById("searches");
 var countryNameArray = [];
+var renderingArray = [];
 var casesDisplay = document.querySelector(".card-subtitle");
 var vaccineStats = document.querySelector("#vaccinatedStats");
 var deathStats = document.querySelector("#deathStats");
@@ -15,9 +16,14 @@ var safeRanking = document.querySelector("#safeRank");
 function arrToUl() {
   recentSearchList.innerHTML = "";
   var recentSearches = JSON.parse(localStorage.getItem("country"));
+  console.log(
+    recentSearches + typeof recentSearches + "THESE ARE THE SEARCHES"
+  );
+  // renderingArray = recentSearches;
+  // console.log(renderingArray + typeof renderingArray + "RENDERING ARRAY");
   console.log("Searches:" + recentSearches);
   if (recentSearches !== null) {
-    for (i = 0; i < recentSearches.length; i++) {
+    for (var i = 0; i < recentSearches.length; i++) {
       var li = document.createElement("li");
       recentSearchList.appendChild(li);
       li.innerHTML = recentSearches[i];
