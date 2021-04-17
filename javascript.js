@@ -1,77 +1,49 @@
 // Get the input from the form using event listener. "submit" for the form and "click" for the button.
+var countryListArray = [];
 var button = document.querySelector("button");
 var formInput = document.getElementById("search-focus");
 var form = document.querySelector("form");
 var locationDisplay = document.querySelector(".card-title");
 var statsDisplay = document.querySelector(".card-text");
 var recentSearchList = document.getElementById("searches");
-var countryNameArray = [];
-var renderingArray = [];
 var casesDisplay = document.querySelector(".card-subtitle");
 var vaccineStats = document.querySelector("#vaccinatedStats");
 var deathStats = document.querySelector("#deathStats");
 var percentageStats = document.querySelector("#percentageStats");
 var safeRanking = document.querySelector("#safeRank");
 
-function arrToUl() {
+function generateDisplay() {
   recentSearchList.innerHTML = "";
-  var recentSearches = JSON.parse(localStorage.getItem("country"));
-  console.log(
-    recentSearches + typeof recentSearches + "THESE ARE THE SEARCHES"
-  );
-  // renderingArray = recentSearches;
-  // console.log(renderingArray + typeof renderingArray + "RENDERING ARRAY");
-  console.log("Searches:" + recentSearches);
-  if (recentSearches !== null) {
-    for (var i = 0; i < recentSearches.length; i++) {
-      var li = document.createElement("li");
-      recentSearchList.appendChild(li);
-      li.innerHTML = recentSearches[i];
-      li.setAttribute("data-search", recentSearches[i]);
-      li.setAttribute(
-        "class",
-        "recentSearch list-group-item bg-dark text-white"
-      );
-      li.setAttribute("onClick", "resubmitSearch(this)");
-    }
+  for (var i = 0; i < countryListArray.length; i++) {
+    var li = document.createElement("BUTTON");
+    li.textContent = countryListArray[i];
+    li.setAttribute(
+      "class",
+      "list-group-item list-group-item-action bg-dark text-light"
+    );
+    recentSearchList.appendChild(li);
   }
 }
-arrToUl();
 
-function resubmitSearch(e) {
-  var search = e.getAttribute("data-search");
-  console.log(search);
-  covidStats(search);
-}
-
-//used below as results only showed when the button was manually clicked and not when pressing enter on the keyboard.
-function onLocationSubmit(event) {
+form.addEventListener("submit", function (event) {
   event.preventDefault();
   var countryName = formInput.value.trim();
-  console.log(countryName);
-  covidStats(countryName);
-  var countrySavedArray = JSON.parse(localStorage.getItem("country"));
-  console.log(typeof countrySavedArray + "SAVED COUNTRIES");
-  if (countrySavedArray !== null) {
-    countryNameArray = countrySavedArray;
-    var nameIncluded = countrySavedArray.includes(countryName);
-    if (nameIncluded) {
-      return;
-    } else {
-      console.log(typeof countrySavedArray + "TYPEOF NAMEARRAY");
-      countrySavedArray.push(countryName);
-      console.log("Array " + countrySavedArray);
-      localStorage.setItem("country", JSON.stringify(countrySavedArray));
-      arrToUl();
-    }
+  if (countryName === "") {
+    return;
   } else {
-    countryNameArray = countryName;
-    console.log("Array " + countryNameArray);
-    localStorage.setItem("country", JSON.stringify(countryNameArray));
-    arrToUl();
+    if (!countryListArray.includes(countryName))
+      countryListArray.push(countryName);
+    localStorage.setItem("country", JSON.stringify(countryListArray));
+    generateDisplay();
+    covidStats(countryName);
   }
+});
+
+recentSearchList.addEventListener("click", function (event) {
+  var countryName = event.target.innerHTML;
   covidStats(countryName);
-}
+  s;
+});
 
 function formatLocationName(locationName) {
   // title case location name
@@ -82,8 +54,6 @@ function formatLocationName(locationName) {
   console.log(encodeURI(titleCasedLocation));
   return encodeURI(titleCasedLocation);
 }
-
-var statsDisplay = document.querySelector(".card-text");
 
 function covidStats(locationName) {
   locationDisplay.innerHTML = locationName;
@@ -170,6 +140,12 @@ function numberWithCommas(x) {
 
 // Initial page. Current location and stats displayed
 function init() {
+  var savedCountries = JSON.parse(localStorage.getItem("country"));
+  if (savedCountries !== null) {
+    countryListArray = savedCountries;
+    console.log(typeof savedCountries + savedCountries + "PLEASE-----------");
+    generateDisplay();
+  }
   url = "https://geolocation-db.com/json/f9902210-97f0-11eb-a459-b997d30983f1";
   fetch(url)
     .then(function (response) {
