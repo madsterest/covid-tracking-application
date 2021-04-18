@@ -28,6 +28,7 @@ function generateDisplay() {
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   var countryName = formInput.value.trim();
+  formInput.value = "";
   if (countryName === "") {
     return;
   } else {
