@@ -7,8 +7,8 @@ var locationDisplay = document.querySelector(".card-title");
 var statsDisplay = document.querySelector(".card-text");
 var recentSearchList = document.getElementById("searches");
 var countryNameArray = [];
-countryNameArray = localStorage.getItem('country');
-countryNameArray = JSON.parse(countryNameArray);
+// countryNameArray = localStorage.getItem('country');
+// countryNameArray = JSON.parse(countryNameArray);
 
 button.addEventListener("click", function () {
   var countryName = formInput.value.trim();
@@ -48,7 +48,7 @@ function resubmitSearch(e) {
   covidStats(search);
 }
 
-form.addEventListener("submit", function (event) {
+// form.addEventListener("submit", function (event) {
 
 var casesDisplay = document.querySelector(".card-subtitle");
 var vaccineStats = document.querySelector("#vaccinatedStats");
@@ -156,5 +156,3 @@ function init() {
 }
 
 init();
-
-
