@@ -19,3 +19,5 @@ URL: https://madsterest.github.io/covid-tracking-application/
 ![local storage screenshot](./assets/local-storage-screenshot.png)
 
 
+Contact me for any questions or concerns:
+Email: odea.madeleine@gmail.com
