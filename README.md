@@ -2,7 +2,7 @@
 
 'stranded'
 
-Introduction - The project's aim is to create a hassle free method for tracking Covid-19 to allow you to assess your travel options.
+Description - The project's aim is to create a hassle free method for tracking Covid-19 to allow you to assess your travel options. It uses a geolocation API to track the users current location and displays the relevant covid stats when launched. It freatures current covid cases, deaths, vaccinated and a status of whether it is safe to travel. The user can then search for speicifc countries which are saved to local storage.
 
 Technologies - This in-web browser application adopts basic CSS styling/bootstrap 4.6 to create an asthetically pleasing UI. Primary code used for this project is Javascript (avaliable to majority of web-browsers and hand held device).
 
@@ -12,12 +12,10 @@ Technologies - This in-web browser application adopts basic CSS styling/bootstra
 
 - basic Javascript logic is used to present infomation on travel recommendations ("safe to trave","DO NOT TRAVEL")
 
-With that said, as a user you're able to use the search function
+URL: https://madsterest.github.io/covid-tracking-application/
 
-This application meets basic functionality requirments.
+![website screenshot](./assets/website-screenshot.png)
+![display screenshot](./assets/display-screenshot.png)
+![local storage screenshot](./assets/local-storage-screenshot.png)
 
-Launch: This application is ready for use.
 
-for any debugging or issues with about use
-
-please contact
