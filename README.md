@@ -15,7 +15,12 @@ Technologies - This in-web browser application adopts basic CSS styling/bootstra
 URL: https://madsterest.github.io/covid-tracking-application/
 
 ![website screenshot](./assets/website-screenshot.png)
+
+
 ![display screenshot](./assets/display-screenshot.png)
+
+
+
 ![local storage screenshot](./assets/local-storage-screenshot.png)
 
 
